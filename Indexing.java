@@ -37,7 +37,7 @@ public class Indexing {
 
 public void createpostings(String str_p,String text) throws IOException
 {	
-	Path path = Paths.get(str_p);
+    Path path = Paths.get(str_p);
     Directory d = FSDirectory.open(path);
     IndexReader ir = DirectoryReader.open(d);
     Terms terms = MultiFields.getTerms(ir,text);
@@ -71,13 +71,6 @@ public void createpostings(String str_p,String text) throws IOException
 		FileInputStream f = new FileInputStream(new File(inputfile));
 		b = new BufferedReader(new InputStreamReader(f, "UTF-8")); 
 		
-//		for(Map.Entry<String, LinkedList<Integer>> entry : PostingMap.entrySet())
-//		  {
-//			  
-//			  bw.append("\nGetPostings\n"+entry.getKey()+"\n"+"Postings list: "+entry.getValue()+"\n");
-//		  }
-
-		
 		while((input = b.readLine())!= null)
 		{
 			getposting();
@@ -92,28 +85,6 @@ public void createpostings(String str_p,String text) throws IOException
 
 	public void getposting() throws IOException
 	{
-//		String words[] = input.split(" ");
-//		for(String key:PostingMap.keySet())
-//		{
-//			
-//			for(String w : words)
-//			{
-//				if(key.equals(w))
-//				{
-//					LinkedList<Integer> posting = new LinkedList<Integer>();
-//					posting = PostingMap.get(key);
-//					bw.write("GetPostings \n");
-//					bw.write(key+"\n");
-//					bw.write("Postings List: \n");
-//					for(int docID: posting)
-//					{
-//						bw.write(docID + " ");
-//					}
-//					bw.write("\n");
-//					
-//				}
-//			}
-//		}
 		
 		String words[] = input.split(" ");
 		for(String w : words)
@@ -345,7 +316,7 @@ public void createpostings(String str_p,String text) throws IOException
     	int count=0;
     	int docCount=0;
     	
-    	//HashMap<Integer,Integer> h = new TreeMap<Integer,Integer>();
+    	
     	TreeMap<Integer,Integer> h = new TreeMap<Integer,Integer>();
     	TreeMap<Integer,Integer> res = new TreeMap<Integer, Integer>();
     	ArrayList<Iterator<Integer>> al = new ArrayList<Iterator<Integer>>();
@@ -402,17 +373,6 @@ public void createpostings(String str_p,String text) throws IOException
     	
     	
     	
-//    	boolean flag = true;
-//    	for(int e : h.keySet())
-//    	{
-//    		if(e==al.size())
-//    		{
-//    			flag=false;
-//    		}
-//    	}
-    	
-    	
-    	
     	if(h.isEmpty())
     	{
     		bw.write("Empty");
@@ -459,7 +419,6 @@ public void createpostings(String str_p,String text) throws IOException
  {
 	System.out.println("DaatOR");
  	bw.write("DaatOr\n");
- 	//bw.write("\nResults:");
  	int docCount=0;
  	
  	String words[] = input.split(" ");
@@ -491,104 +450,7 @@ public void createpostings(String str_p,String text) throws IOException
  	
  	bw.write("\nNumber of documents in results: "+h.size());
  	bw.write("\nNumber of comparisons: "+docCount+"\n");
- 	//bw.write("\n");
+ 	
  }
 }
-
-// public void TaatAnd()
-// 		{
-// 			int count = 0;
-// 	    	System.out.println("TaatAND");
-// 	    	//bw.write("TaatAND\n");
-// 	    	LinkedList<Integer> list = new LinkedList<Integer>();
-// 	    	LinkedList<Integer> temp = new LinkedList<Integer>();
-// 	    	String words[] = input.split(" ");
-// 	    	
-// 	    	
-// 	    	
-// 	    	for(String key : PostingMap.keySet())
-// 	    	{
-// 	    		for(String w : words)
-// 	    				{
-// 	    					if(key.equals(w))
-// 	    					{
-// 	    						//bw.write(w+" ");
-// 	    						if(list.isEmpty())
-// 	    						{
-// 	    							list.addAll(PostingMap.get(w));
-// 	    						}
-// 	    						else if(!list.isEmpty())
-// 	    						{
-// 	    							LinkedList<Integer> t = (LinkedList<Integer>) PostingMap.get(w);
-// 	    							ListIterator<Integer> itr = list.listIterator();
-// 	    							ListIterator<Integer> itr1 = t.listIterator();
-// 	    							while(itr.hasNext() && itr1.hasNext())
-// 	    							{
-// 	    								count=count+1;
-// 	    							
-// 	    								if(itr.next()<itr1.next())
-// 	    									{
-// 	    										itr.next();
-// 	    									}
-// 	    									else if(itr.next()>itr1.next())
-// 	    									{
-// 	    										itr1.next();
-// 	    									}
-// 	    									else
-// 	    									{
-// 	    										temp.add(itr.previous());
-// 	    										itr.next();
-// 	    										itr1.next();
-// 	    									}
-// 	    								}
-// 	    							}
-// 	    					}
-// 	    				}
-// 	    	}
-// 	    	for(int docid : temp)
-// 	    	{
-// 	    		System.out.println("Results "+ docid + "  ");
-// 	    	}
-// 	    	
-// 		}
-//}
-// 	    						
-//    	
-//    	int j=0;
-//    	int k=0;
-//    	    	
-//    	while((j<p[0].size()) && (k<p[1].size()))
-//    	{
-//    		count = count+1;
-//    		if(p[0].get(j)<p[1].get(k))
-//    		{
-//    			j++;
-//    		}
-//    		else if(p[0].get(j)>p[1].get(k))
-//    		{
-//    			k++;
-//    		}
-//    		else
-//    		{
-//    			and_taat.add(p[0].get(j));
-//    			j++;
-//    			k++;
-//    		}
-//    	}
-//    	System.out.println(p[0].size());
-//    	System.out.println(p[1].size());
-//    	
-//    	bw.write("\r\n");
-//    	bw.write("\r\n");
-//    	System.out.println("Number of comparisons are = " + count);
-//    	bw.write("\r\n");
-//    	for(int docid : and_taat)
-//    	{
-//    		bw.write("Results "+ docid + "  ");
-//    	}
-//    	
-//    	
-//    }
-// 		
-	
 
